@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>purpleconseil.fr — Structuration de prospection B2B</title>
+  <meta name="description" content="purpleconseil.fr — Purple Conseil accompagne les entreprises B2B dans la structuration de leur prospection : clarté, méthode, pilotage. Audit 450€ puis Solution Purple (devis sur mesure)." />
+
+  <!-- Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --purple:#5F09AA;
+      --black:#0B0B0B;
+      --gray-1:#F4F1F8;
+      --gray-2:#D5D0D9;
+      --gray-3:#857C8D;
+      --white:#FFFFFF;
+
+      --radius:20px;
+      --radius-sm:14px;
+      --shadow:0 16px 40px rgba(11,11,11,.10);
+      --shadow-soft:0 10px 26px rgba(11,11,11,.08);
+      --max:1160px;
+
+      --ease:cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--black);
+      background:var(--white);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+
+    .container{max-width:var(--max);margin:0 auto;padding:0 22px}
+    .muted{color:rgba(11,11,11,.72)}
+    .small{font-size:13px}
+    .chip{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 14px;border-radius:999px;
+      border:1px solid rgba(95,9,170,.18);
+      background:rgba(95,9,170,.06);
+      color:var(--purple);
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:.1px;
+    }
+    .kpi{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .kpi span{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(11,11,11,.08);
+      background:#fff;
+      box-shadow:var(--shadow-soft);
+      font-weight:700;
+      font-size:13px;
+      color:rgba(11,11,11,.78);
+    }
+
+    .icon{width:18px;height:18px;display:inline-block}
+    .icon svg{width:18px;height:18px;display:block}
+    .icon.white svg{fill:#fff}
+    .icon.gray svg{fill:rgba(11,11,11,.75)}
+    .icon.purple svg{fill:var(--purple)}
+
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.86);
+      backdrop-filter:saturate(180%) blur(12px);
+      border-bottom:1px solid rgba(11,11,11,.06);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:14px}
+
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
+    /* LOGO plus visible */
+    .brand img{height:88px;width:auto}
+
+    .menu{display:flex;align-items:center;gap:12px;list-style:none;margin:0;padding:0}
+    .menu a{
+      font-weight:800;font-size:13px;color:rgba(11,11,11,.78);
+      padding:8px 8px;border-radius:12px;
+      transition:.15s background var(--ease), .15s color var(--ease);
+    }
+    .menu a:hover{background:rgba(11,11,11,.04);color:var(--black)}
+
+    .nav-cta{display:flex;align-items:center;gap:10px}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 16px;border-radius:14px;
+      font-weight:800;font-size:14px;
+      border:1px solid rgba(11,11,11,.10);
+      background:#fff;color:var(--black);
+      box-shadow:var(--shadow-soft);
+      cursor:pointer;
+      transition:.18s transform var(--ease), .18s box-shadow var(--ease), .18s background var(--ease);
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+    .btn.primary{
+      background:var(--purple);color:#fff;
+      border-color:rgba(95,9,170,.35);
+      box-shadow:0 18px 46px rgba(95,9,170,.22);
+    }
+    .btn.primary:hover{box-shadow:0 24px 60px rgba(95,9,170,.26)}
+    .btn.outline{
+      background:#fff;color:var(--purple);
+      border-color:rgba(95,9,170,.22);
+    }
+    .btn.ghost{
+      background:transparent;border:0;box-shadow:none;color:rgba(11,11,11,.78);
+      padding:10px 12px;border-radius:12px;
+    }
+    .btn.ghost:hover{background:rgba(11,11,11,.04);transform:none;box-shadow:none}
+
+    .burger{display:none}
+    .mobile-menu{display:none;padding:10px 0 18px}
+    .mobile-menu a{
+      display:block;padding:12px 10px;border-radius:12px;
+      font-weight:800;color:rgba(11,11,11,.78)
+    }
+    .mobile-menu a:hover{background:rgba(11,11,11,.04);color:var(--black)}
+
+    .hero{
+      padding:64px 0 22px;
+      background:
+        radial-gradient(900px 380px at 15% 0%, rgba(95,9,170,.14), transparent 55%),
+        radial-gradient(800px 320px at 85% 20%, rgba(11,11,11,.06), transparent 60%),
+        linear-gradient(180deg, var(--gray-1), #fff 45%);
+    }
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
+    .h1{font-size:46px;line-height:1.06;letter-spacing:-.9px;margin:14px 0 14px}
+    .lead{font-size:16px;margin:0 0 18px;max-width:62ch;color:rgba(11,11,11,.78)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:10px}
+    .hero-note{margin-top:14px;color:rgba(11,11,11,.66);font-size:13px}
+
+    .hero-card{
+      border-radius:var(--radius);
+      border:1px solid rgba(11,11,11,.08);
+      background:#fff;
+      box-shadow:var(--shadow-soft);
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute;inset:-120px -120px auto auto;
+      width:280px;height:280px;border-radius:50%;
+      background:rgba(95,9,170,.12);
+      filter:blur(2px);
+    }
+    .hero-card h3{margin:0 0 10px;font-size:16px;position:relative}
+    .hero-card ul{margin:0;padding-left:18px;color:rgba(11,11,11,.78);position:relative}
+    .hero-card li{margin:8px 0}
+
+    section{padding:52px 0}
+    .section-title{font-size:28px;letter-spacing:-.4px;margin:0 0 10px}
+    .section-sub{margin:0 0 22px;color:rgba(11,11,11,.72);max-width:88ch}
+
+    .grid{display:grid;gap:18px}
+    .cards-3{grid-template-columns:repeat(3,1fr)}
+    .cards-4{grid-template-columns:repeat(4,1fr)}
+    .split{grid-template-columns:1fr 1fr}
+
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(11,11,11,.08);
+      background:#fff;
+      box-shadow:var(--shadow-soft);
+      padding:20px;
+      transition:.2s transform var(--ease), .2s box-shadow var(--ease);
+    }
+    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+    .card h4{margin:0 0 8px;font-size:16px}
+    .card p{margin:0;color:rgba(11,11,11,.74);font-size:14px}
+
+    .badge{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:6px 10px;border-radius:999px;
+      background:rgba(11,11,11,.06);
+      font-weight:800;font-size:12px;color:rgba(11,11,11,.76);
+      margin-bottom:10px;
+    }
+
+    .step{
+      border-radius:var(--radius);
+      border:1px solid rgba(95,9,170,.18);
+      background:rgba(95,9,170,.05);
+      padding:18px;
+    }
+    .step .n{
+      width:34px;height:34px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--purple);color:#fff;font-weight:900;
+      margin-bottom:12px;
+    }
+
+    .offer{
+      border-radius:var(--radius);
+      border:1px solid rgba(95,9,170,.22);
+      background:
+        radial-gradient(900px 360px at 15% 0%, rgba(95,9,170,.16), transparent 55%),
+        #fff;
+      box-shadow:var(--shadow-soft);
+      padding:22px;
+    }
+    .price{
+      font-size:30px;
+      font-weight:900;
+      letter-spacing:-.6px;
+      margin:8px 0 2px;
+      color:var(--purple);
+    }
+
+    .contact-box{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(11,11,11,.10);
+      background:#fff;
+      box-shadow:var(--shadow-soft);
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-start;
+    }
+    .contact-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(11,11,11,.06);
+      font-weight:800;
+      font-size:13px;
+      color:rgba(11,11,11,.82);
+    }
+
+    form{display:grid;gap:12px}
+    input,textarea{
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(11,11,11,.12);
+      outline:none;
+      font:inherit;
+      font-size:14px;
+      background:#fff;
+    }
+    input:focus,textarea:focus{
+      border-color:rgba(95,9,170,.45);
+      box-shadow:0 0 0 4px rgba(95,9,170,.08);
+    }
+    textarea{min-height:120px;resize:vertical}
+    .rgpd{font-size:12px;color:rgba(11,11,11,.62);margin-top:4px}
+
+    footer{
+      background:var(--black);
+      color:#fff;
+      padding:36px 0;
+      margin-top:18px;
+    }
+    .foot{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+    .foot-left{display:flex;align-items:center;gap:14px}
+    .foot-left img{height:44px}
+    .foot-links{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+    .foot-links a{color:rgba(255,255,255,.84);font-weight:700;font-size:13px}
+    .foot-links a:hover{color:#fff}
+
+    .reveal{opacity:0;transform:translateY(10px);transition:.6s opacity var(--ease), .6s transform var(--ease)}
+    .reveal.on{opacity:1;transform:none}
+
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .cards-3{grid-template-columns:1fr}
+      .cards-4{grid-template-columns:1fr 1fr}
+      .split{grid-template-columns:1fr}
+      .menu{display:none}
+      .burger{display:inline-flex}
+      .mobile-menu{display:none}
+      .mobile-menu.open{display:block}
+      .brand img{height:72px;}
+    }
+    @media (max-width: 520px){
+      .h1{font-size:36px}
+      .cards-4{grid-template-columns:1fr}
+      .brand img{height:60px}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- CONFIG -->
+  <script>
+    const FORM_ACTION = "https://formspree.io/f/xykzywry";
+    const EMAIL = "younes.purple@gmail.com";
+    const PHONE_DISPLAY = "06 73 09 82 64";
+    const PHONE_TEL = "+33673098264";
+    const LINKEDIN = "https://www.linkedin.com/company/purple-conseil/?viewAsMember=true";
+  </script>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Accueil">
+        <img src="assets/logo.png" alt="Purple Conseil — Logo">
+      </a>
+
+      <nav aria-label="Navigation">
+        <ul class="menu">
+          <li><a href="#methode">Méthode</a></li>
+          <li><a href="#programme">Programme 3 mois</a></li>
+          <li><a href="#audit">Audit</a></li>
+          <li><a href="#purple">Solution Purple</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn ghost" id="btnMail" href="#">
+          <span class="icon gray" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+          </span>
+          Email
+        </a>
+
+        <a class="btn outline" id="btnCall" href="#">
+          <span class="icon purple" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.5.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.4 22 2 13.6 2 3a1 1 0 0 1 1-1h3.9a1 1 0 0 1 1 1c0 1.2.2 2.4.57 3.5a1 1 0 0 1-.25 1L6.6 10.8Z"/></svg>
+          </span>
+          Appeler
+        </a>
+
+        <a class="btn primary" href="#contact">Contact</a>
+
+        <button class="btn burger" id="burger" aria-label="Ouvrir le menu">☰</button>
+      </div>
+    </div>
+
+    <div class="container mobile-menu" id="mobileMenu">
+      <a href="#methode">Méthode</a>
+      <a href="#programme">Programme 3 mois</a>
+      <a href="#audit">Audit</a>
+      <a href="#purple">Solution Purple</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="chip">purpleconseil.fr — Structuration de prospection B2B</span>
+          <h1 class="h1">Reprenez le contrôle de votre prospection.</h1>
+          <p class="lead">
+            Purple Conseil accompagne les entreprises B2B (startups, PME de services, cabinets IT/ESN)
+            à rendre leur prospection <strong>plus claire</strong>, <strong>plus régulière</strong> et <strong>pilotable</strong> —
+            <strong>sans recrutement</strong> et <strong>sans promesse irréaliste</strong>.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#contact">Me contacter</a>
+            <a class="btn outline" href="#audit">Voir l’Audit 450€</a>
+            <a class="btn" href="#purple">Découvrir Purple</a>
+            <a class="btn" id="btnCall2" href="#">
+              <span class="icon gray" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.5.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.4 22 2 13.6 2 3a1 1 0 0 1 1-1h3.9a1 1 0 0 1 1 1c0 1.2.2 2.4.57 3.5a1 1 0 0 1-.25 1L6.6 10.8Z"/></svg>
+              </span>
+              Appeler
+            </a>
+          </div>
+
+          <div class="kpi">
+            <span>⏱️ Programme 3 mois</span>
+            <span>🧭 Méthode simple</span>
+            <span>🎯 Objectif : opportunités</span>
+            <span>🟣 Audit : 450€</span>
+          </div>
+
+          <div class="contact-box">
+            <span class="contact-pill">✉️ <span id="emailInline"></span></span>
+            <span class="contact-pill">📞 <span id="phoneInline"></span></span>
+          </div>
+
+          <p class="hero-note">
+            Contact direct — réponse rapide par email ou téléphone.
+          </p>
+        </div>
+
+        <aside class="hero-card reveal">
+          <h3>Depuis 2023, la prospection B2B s’est compliquée :</h3>
+          <ul>
+            <li>Saturation des canaux</li>
+            <li>Cycles de décision plus longs</li>
+            <li>Concurrence accrue</li>
+            <li>Manque de méthode / pilotage</li>
+          </ul>
+          <div style="margin-top:16px;">
+            <span class="badge">Problématique</span>
+            <p class="small muted" style="margin:0">
+              Comment générer des opportunités régulières dans un marché plus complexe,
+              sans recruter et sans désorganiser l’existant ?
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title reveal">Ce que fait Purple Conseil</h2>
+        <p class="section-sub reveal">
+          Nous structurons votre prospection autour d’un cadre clair, simple et pilotable.
+          Pas de jargon. Pas de promesse de chiffre. Des livrables concrets.
+        </p>
+
+        <div class="grid cards-3">
+          <div class="card reveal">
+            <h4>Clarté</h4>
+            <p>Clarification des cibles, décideurs, positionnement et messages.</p>
+          </div>
+          <div class="card reveal">
+            <h4>Structure</h4>
+            <p>Organisation, cadence tenable et process simples (sans complexité).</p>
+          </div>
+          <div class="card reveal">
+            <h4>Pilotage</h4>
+            <p>Suivi, ajustements et progression continue — pour gagner en autonomie.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="methode">
+      <div class="container">
+        <h2 class="section-title reveal">La méthode (4 axes)</h2>
+        <p class="section-sub reveal">
+          Une approche terrain : on clarifie, on met en place, on ajuste, puis on rend autonome.
+        </p>
+
+        <div class="grid cards-4">
+          <div class="step reveal">
+            <div class="n">1</div>
+            <h4>Clarifier</h4>
+            <p>Segments, décideurs, proposition de valeur, priorités.</p>
+          </div>
+          <div class="step reveal">
+            <div class="n">2</div>
+            <h4>Structurer</h4>
+            <p>Cadence, process, rituels et organisation commerciale.</p>
+          </div>
+          <div class="step reveal">
+            <div class="n">3</div>
+            <h4>Outiller</h4>
+            <p>Messages, scripts, séquences et supports prêts à l’emploi.</p>
+          </div>
+          <div class="step reveal">
+            <div class="n">4</div>
+            <h4>Piloter</h4>
+            <p>Suivi, optimisation, montée en qualité, autonomie.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="programme">
+      <div class="container">
+        <h2 class="section-title reveal">Programme d’accompagnement : 3 mois</h2>
+        <p class="section-sub reveal">
+          Un cadre clair et court, pour structurer durablement votre prospection
+          — sans recruter, sans promesse de CA, sans bouleverser l’existant.
+        </p>
+
+        <div class="grid split">
+          <div class="card reveal">
+            <span class="badge">Mois 1</span>
+            <h4>Diagnostic & cadrage</h4>
+            <p class="muted">
+              Lecture de l’existant, clarification des cibles, messages, et plan d’action réaliste.
+            </p>
+          </div>
+          <div class="card reveal">
+            <span class="badge">Mois 2</span>
+            <h4>Structuration & mise en œuvre</h4>
+            <p class="muted">
+              Cadence, scripts, process simples, mise en place progressive et accompagnée.
+            </p>
+          </div>
+          <div class="card reveal">
+            <span class="badge">Mois 3</span>
+            <h4>Optimisation & autonomisation</h4>
+            <p class="muted">
+              Ajustements sur retours terrain, pilotage et feuille de route pour la suite.
+            </p>
+          </div>
+          <div class="card reveal">
+            <span class="badge">Livrables</span>
+            <h4>Ce que vous obtenez</h4>
+            <p class="muted">
+              Cibles & priorités, messages + scripts, cadence, tableau de pilotage, feuille de route.
+            </p>
+          </div>
+        </div>
+
+        <div class="kpi reveal">
+          <span>✅ Sans recrutement</span>
+          <span>✅ Sans promesse de CA</span>
+          <span>✅ Cadre simple</span>
+          <span>✅ Pilotage</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUDIT -->
+    <section id="audit">
+      <div class="container">
+        <h2 class="section-title reveal">Offre d’entrée : Audit — 450€</h2>
+        <p class="section-sub reveal">
+          Une prestation courte, sérieuse et sans engagement pour poser un diagnostic clair avant toute décision.
+        </p>
+
+        <div class="offer reveal">
+          <div class="grid split">
+            <div>
+              <span class="badge">Audit</span>
+              <div class="price">450€</div>
+              <p class="muted small">30 à 45 minutes • Visio / téléphone • diagnostic et recommandations</p>
+              <ul style="margin:14px 0 0;padding-left:18px;color:rgba(11,11,11,.78)">
+                <li>Analyse de la situation actuelle</li>
+                <li>Identification des blocages</li>
+                <li>Clarification des leviers d’amélioration</li>
+                <li>Proposition d’un plan d’action réaliste</li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="badge">Contact</span>
+              <h4 style="margin:6px 0 8px;">Pour réserver / poser une question</h4>
+              <p class="muted small" style="margin:0 0 14px;">
+                Contact direct : email et téléphone.
+              </p>
+
+              <div class="contact-box">
+                <a class="btn primary" id="btnMail2" href="#">
+                  <span class="icon white" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+                  </span>
+                  Envoyer un email
+                </a>
+
+                <a class="btn outline" id="btnCall3" href="#">
+                  <span class="icon purple" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.5.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.4 22 2 13.6 2 3a1 1 0 0 1 1-1h3.9a1 1 0 0 1 1 1c0 1.2.2 2.4.57 3.5a1 1 0 0 1-.25 1L6.6 10.8Z"/></svg>
+                  </span>
+                  Appeler
+                </a>
+
+                <span class="contact-pill">✉️ <strong id="emailInline2"></strong></span>
+                <span class="contact-pill">📞 <strong id="phoneInline2"></strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PURPLE = SUITE SUR MESURE -->
+    <section id="purple">
+      <div class="container">
+        <h2 class="section-title reveal">Suite après l’Audit : Solution Purple (devis sur mesure)</h2>
+        <p class="section-sub reveal">
+          Si l’Audit confirme qu’on peut avancer ensemble, la <strong>Solution Purple</strong> met en place la méthode complète :
+          <strong>structuration</strong>, <strong>outillage</strong> et <strong>pilotage</strong>. Le périmètre et le prix sont définis via un
+          <strong>devis sur mesure</strong>, selon votre contexte et vos priorités.
+        </p>
+
+        <div class="grid split">
+          <div class="card reveal">
+            <span class="badge">Ce que vous obtenez</span>
+            <h4>Méthodologie + outillage + pilotage</h4>
+            <p class="muted">
+              Une mise en place concrète, progressive et pilotée, pour rendre votre prospection claire et régulière.
+            </p>
+            <ul style="margin:14px 0 0;padding-left:18px;color:rgba(11,11,11,.78)">
+              <li>Clarification des cibles, décideurs, priorités</li>
+              <li>Positionnement & messages (mail / call / LinkedIn)</li>
+              <li>Scripts, séquences et organisation (cadence réaliste)</li>
+              <li>Tableau de pilotage + points hebdo</li>
+              <li>Ajustements sur retours terrain (amélioration continue)</li>
+            </ul>
+          </div>
+
+          <div class="card reveal">
+            <span class="badge">Devis sur mesure</span>
+            <h4>Adapté à votre réalité terrain</h4>
+            <p class="muted">
+              Après l’Audit, on définit ensemble : objectifs, périmètre, rythme, outils et livrables.
+              Vous avez un plan clair, puis un devis cohérent avec vos besoins.
+            </p>
+            <div class="contact-box" style="margin-top:14px">
+              <a class="btn primary" href="#contact">Discuter de la suite</a>
+              <a class="btn outline" href="#audit">Commencer par l’Audit</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi reveal">
+          <span>🟣 Méthode Purple</span>
+          <span>🧰 Outillage</span>
+          <span>📊 Pilotage</span>
+          <span>🧾 Devis sur mesure</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="apropos">
+      <div class="container">
+        <h2 class="section-title reveal">À propos de nous</h2>
+        <p class="section-sub reveal">Storytelling sobre, terrain et professionnel (lecture &lt; 30 secondes).</p>
+
+        <div class="grid split">
+          <div class="card reveal">
+            <span class="badge">Origine</span>
+            <p class="muted" style="margin:0">
+              Purple Conseil est né d’une expérience terrain en développement commercial : contact direct avec des clients,
+              environnements exigeants (boutique, ESN, IT, grands groupes) et confrontation aux difficultés de prospection,
+              particulièrement depuis 2023.
+            </p>
+          </div>
+          <div class="card reveal">
+            <span class="badge">Conviction</span>
+            <p class="muted" style="margin:0">
+              La prospection ne doit pas reposer sur l’improvisation ou uniquement sur l’effort individuel,
+              mais sur un cadre clair, simple et pilotable. <strong>Purple</strong> (violet) symbolise la clarté,
+              la stabilité et la vision : une approche posée, structurée et humaine du conseil.
+            </p>
+          </div>
+        </div>
+
+        <div class="kpi reveal">
+          <span>🟣 Clarté</span>
+          <span>🧩 Méthode</span>
+          <span>📈 Pilotage</span>
+          <span>🤝 Humain</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title reveal">Contact</h2>
+        <p class="section-sub reveal">
+          Le plus simple : envoyez un message via le formulaire. Sinon, appelez directement.
+        </p>
+
+        <div class="grid split">
+          <div class="card reveal">
+            <span class="badge">Coordonnées</span>
+            <h4 style="margin:6px 0 8px;">Contact direct</h4>
+            <div class="contact-box">
+              <span class="contact-pill">✉️ <strong id="emailInline3"></strong></span>
+              <span class="contact-pill">📞 <strong id="phoneInline3"></strong></span>
+              <a class="btn outline" id="btnCall4" href="#">
+                <span class="icon purple" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.5.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.4 22 2 13.6 2 3a1 1 0 0 1 1-1h3.9a1 1 0 0 1 1 1c0 1.2.2 2.4.57 3.5a1 1 0 0 1-.25 1L6.6 10.8Z"/></svg>
+                </span>
+                Appeler
+              </a>
+              <a class="btn" id="btnLinkedIn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <span class="badge">Envoyer un message</span>
+            <h4 style="margin:6px 0 8px;">Formulaire</h4>
+
+            <form action="https://formspree.io/f/xykzywry" method="POST" id="contactForm">
+              <input type="text" name="name" placeholder="Nom" required>
+              <input type="text" name="company" placeholder="Entreprise" required>
+              <input type="email" name="email" placeholder="Votre email" required>
+              <textarea name="message" placeholder="Votre message" required></textarea>
+
+              <button class="btn primary" type="submit">Envoyer</button>
+
+              <div class="rgpd">Vos données sont utilisées uniquement pour vous recontacter.</div>
+              <div class="small muted" id="formStatus" style="margin-top:6px;"></div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div class="foot-left">
+        <img src="assets/logo.png" alt="Purple Conseil — Logo footer">
+        <div>
+          <div style="font-weight:900;letter-spacing:.2px">purpleconseil.fr</div>
+          <div class="small" style="color:rgba(255,255,255,.74)">Structuration de prospection B2B</div>
+          <div class="small" style="color:rgba(255,255,255,.74)">Email : <span id="emailFooter"></span></div>
+          <div class="small" style="color:rgba(255,255,255,.74)">Téléphone : <span id="phoneFooter"></span></div>
+        </div>
+      </div>
+
+      <div class="foot-links">
+        <a href="#methode">Méthode</a>
+        <a href="#programme">Programme</a>
+        <a href="#audit">Audit</a>
+        <a href="#purple">Solution Purple</a>
+        <a href="#apropos">À propos</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Links
+    document.getElementById("btnMail").href = `mailto:${EMAIL}`;
+    const btnMail2 = document.getElementById("btnMail2");
+    if(btnMail2) btnMail2.href = `mailto:${EMAIL}`;
+
+    const calls = ["btnCall","btnCall2","btnCall3","btnCall4"];
+    calls.forEach(id=>{
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.href = `tel:${PHONE_TEL}`;
+      el.title = PHONE_DISPLAY;
+    });
+
+    const btnLinkedIn = document.getElementById("btnLinkedIn");
+    if(btnLinkedIn) btnLinkedIn.href = LINKEDIN;
+
+    // Inline values
+    const emailIds = ["emailInline","emailInline2","emailInline3","emailFooter"];
+    emailIds.forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.textContent = EMAIL;
+    });
+
+    const phoneIds = ["phoneInline","phoneInline2","phoneInline3","phoneFooter"];
+    phoneIds.forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.textContent = PHONE_DISPLAY;
+    });
+
+    // Mobile menu
+    const burger = document.getElementById("burger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    burger?.addEventListener("click", () => mobileMenu.classList.toggle("open"));
+    mobileMenu?.querySelectorAll("a").forEach(a => a.addEventListener("click", () => mobileMenu.classList.remove("open")));
+
+    // Scroll reveal
+    const reveals = Array.from(document.querySelectorAll(".reveal"));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("on");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    // Form UX
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("formStatus");
+    form.addEventListener("submit", () => {
+      status.textContent = "Message envoyé… (si vous restez sur la page, vous pouvez continuer à naviguer)";
+    });
+  </script>
+</body>
+</html>
+
